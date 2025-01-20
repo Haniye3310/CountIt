@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MonoMessageReciever : MonoBehaviour
@@ -6,7 +7,7 @@ public class MonoMessageReciever : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SystemFunction.Start(DataRepo);
+        SystemFunction.Start(DataRepo,this);
     }
 
     // Update is called once per frame
@@ -19,4 +20,5 @@ public class MonoMessageReciever : MonoBehaviour
     {
         SystemFunction.Count(DataRepo);
     }
+    
 }
