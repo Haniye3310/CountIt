@@ -22,6 +22,11 @@ public class SystemFunction
         {
             mono.StartCoroutine(SetTarget(dataRepo,m));
         }
+        foreach(PlayerData p in dataRepo.Players)
+        {
+            if(!p.IsUser)
+                mono.StartCoroutine(Robot(dataRepo,p));
+        }
     }
     public static void MoveTowardsTarget(DataRepo dataRepo,MushroomData mushroomData,Vector3 direction)
     {
@@ -93,6 +98,7 @@ public class SystemFunction
             if(p.IsUser)
             {
                 p.Count++;
+                p.CountText.text = p.Count.ToString();
             }
         }
     }
@@ -102,7 +108,8 @@ public class SystemFunction
         while (p.Count < finalCount)
         {
             p.Count++;
-            yield return new WaitForSeconds(0.1f);
+            p.CountText.text = p.Count.ToString();
+            yield return new WaitForSeconds(1f);
         }
 
     }

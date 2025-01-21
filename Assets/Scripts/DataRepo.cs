@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DataRepo : MonoBehaviour
@@ -18,14 +19,13 @@ public class DataRepo : MonoBehaviour
 [Serializable]
 public class PlayerData
 {
-    public int Count;
+    [NonSerialized]public int Count;
     public bool IsUser;
+    public TextMeshProUGUI CountText;
 }
 [Serializable]
 public class MushroomData
 {
-    //public Rigidbody MushroomRigidbody;
-    //public GameObject MushroomGameObject;
     public Mushroom Mushroom;
     public Vector3 TargetPosition;
 }

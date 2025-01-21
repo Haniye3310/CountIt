@@ -16,7 +16,7 @@ public class MonoMessageReciever : MonoBehaviour
         SystemFunction.Update(DataRepo);
     }
 
-    void OnCountButtonClick()
+    public void OnCountButtonClick()
     {
         SystemFunction.Count(DataRepo);
     }
