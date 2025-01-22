@@ -6,27 +6,48 @@ public class SystemFunction
 {
     public static void Start(DataRepo dataRepo,MonoBehaviour mono) 
     {
-        dataRepo.NumberOfMushrooms = Random.Range(18, 30);
-        if (dataRepo.NumberOfMushrooms > dataRepo.SpawnPositions.Count)
-        {
-            Debug.LogError("There isnt enough position to generate objects. increase the spawn positions");
-        }
-        for (int i = 0; i < dataRepo.NumberOfMushrooms; i++)
-        {
-
-            Mushroom mushroom = GameObject.Instantiate(dataRepo.MushroomPrefab, dataRepo.SpawnPositions[0].position, Quaternion.identity);
-            dataRepo.mushrooms.Add(new MushroomData {Mushroom = mushroom });
-            dataRepo.SpawnPositions.RemoveAt(0);
-        }
-        foreach (MushroomData m in dataRepo.mushrooms)
-        {
-            mono.StartCoroutine(SetTarget(dataRepo,m));
-        }
         foreach(PlayerData p in dataRepo.Players)
         {
             if(!p.IsUser)
                 mono.StartCoroutine(Robot(dataRepo,p));
         }
+    }
+    public static void StartMushroom(DataRepo dataRepo, MonoBehaviour mono)
+    {
+        dataRepo.NumberOfMushrooms = Random.Range(18, 30);
+        for (int i = 0; i < dataRepo.NumberOfMushrooms; i++)
+        {
+            int r = Random.Range(0, 2);
+            Vector3 pos;
+            if (r == 0)
+                pos = GetRandomPointOnPlane(dataRepo.Plane1);
+            else
+                pos = GetRandomPointOnPlane(dataRepo.Plane2);
+
+            Mushroom mushroom = GameObject.Instantiate(dataRepo.MushroomPrefab, pos, Quaternion.identity);
+            dataRepo.mushrooms.Add(new MushroomData { Mushroom = mushroom });
+        }
+        foreach (MushroomData m in dataRepo.mushrooms)
+        {
+            mono.StartCoroutine(SetTarget(dataRepo, m));
+        }
+    }
+    public static IEnumerator StartTimer(DataRepo dataRepo)
+    {
+        dataRepo.RemainingTimeInGame = dataRepo.TimeOftheGame;
+        while (dataRepo.RemainingTimeInGame > 0)
+        {
+            dataRepo.RemainingTimeInGame -= Time.deltaTime;
+            if ((int)dataRepo.RemainingTimeInGame < 5)
+            {
+                dataRepo.TimerImage.color = Color.red;
+            }
+            dataRepo.RemainingTimeText.text = ((int)dataRepo.RemainingTimeInGame).ToString();
+            yield return null;
+        }
+        dataRepo.ResultPanel.gameObject.SetActive(true);
+        dataRepo.InGameUIPanel.gameObject.SetActive(false);
+
     }
     public static void MoveTowardsTarget(DataRepo dataRepo,MushroomData mushroomData,Vector3 direction)
     {
@@ -64,7 +85,7 @@ public class SystemFunction
         while(true)
         {
             float rt = Random.Range(3f,8f);
-            int r = Random.Range(0, 3);
+            int r = Random.Range(0, 2);
             if(r == 0)
             {
                 mushroomData.TargetPosition = GetRandomPointOnPlane(dataRepo.Plane1);
@@ -110,7 +131,8 @@ public class SystemFunction
         {
             p.Count++;
             p.CountText.text = p.Count.ToString();
-            yield return new WaitForSeconds(1f);
+            float rt = Random.Range(0.5f, 2);
+            yield return new WaitForSeconds(rt);
         }
 
     }
