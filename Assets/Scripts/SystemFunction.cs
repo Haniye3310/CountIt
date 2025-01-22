@@ -63,8 +63,8 @@ public class SystemFunction
     {
         while(true)
         {
-
-            int r = Random.Range(0, 2);
+            float rt = Random.Range(3f,8f);
+            int r = Random.Range(0, 3);
             if(r == 0)
             {
                 mushroomData.TargetPosition = GetRandomPointOnPlane(dataRepo.Plane1);
@@ -73,15 +73,16 @@ public class SystemFunction
             {
                 mushroomData.TargetPosition = GetRandomPointOnPlane(dataRepo.Plane2);
             }
-            yield return new WaitForSeconds(1);
+
+            yield return new WaitForSeconds(rt);
         }
     }
     public static Vector3 GetRandomPointOnPlane(Transform planeTransform)
     {
         // Get the plane's size from its local scale
         Vector3 scale = planeTransform.localScale;
-        float planeWidth = 10f * scale.x; // Unity Plane has a default size of 10x10
-        float planeHeight = 10f * scale.z;
+        float planeWidth = 2f * scale.x; // Unity Plane has a default size of 10x10
+        float planeHeight = 2f * scale.z;
 
         // Generate random values within the plane's dimensions
         float randomX = Random.Range(-planeWidth / 2f, planeWidth / 2f);

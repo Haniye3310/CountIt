@@ -2716,47 +2716,47 @@ MonoBehaviour:
     CountText: {fileID: 451220419}
   MushroomPrefab: {fileID: 5328909906849155950, guid: e81ef8786173553499e1e70aafdcf36e, type: 3}
   SpawnPositions:
+  - {fileID: 1771055353}
   - {fileID: 1197692640}
   - {fileID: 1018804459}
-  - {fileID: 11973299}
-  - {fileID: 1847696834}
-  - {fileID: 1281816824}
-  - {fileID: 2025361787}
-  - {fileID: 1193618322}
-  - {fileID: 2045473235}
-  - {fileID: 1183734924}
-  - {fileID: 685959201}
-  - {fileID: 1763372381}
-  - {fileID: 920725373}
-  - {fileID: 295691198}
-  - {fileID: 2042036698}
-  - {fileID: 2045040648}
-  - {fileID: 350644211}
-  - {fileID: 820708715}
-  - {fileID: 1110986111}
-  - {fileID: 1044015801}
-  - {fileID: 482811340}
-  - {fileID: 397189550}
-  - {fileID: 1771055353}
   - {fileID: 1424873078}
+  - {fileID: 11973299}
   - {fileID: 453252538}
+  - {fileID: 1847696834}
   - {fileID: 1055443739}
+  - {fileID: 1281816824}
   - {fileID: 836863029}
+  - {fileID: 2025361787}
   - {fileID: 1788130891}
+  - {fileID: 1193618322}
   - {fileID: 1992974447}
+  - {fileID: 2045473235}
   - {fileID: 1245231054}
+  - {fileID: 1183734924}
   - {fileID: 1080261054}
+  - {fileID: 685959201}
   - {fileID: 290562664}
+  - {fileID: 1763372381}
   - {fileID: 1900654837}
+  - {fileID: 920725373}
   - {fileID: 1546313596}
+  - {fileID: 295691198}
   - {fileID: 1521580635}
+  - {fileID: 2042036698}
   - {fileID: 811209823}
+  - {fileID: 2045040648}
   - {fileID: 1947941553}
+  - {fileID: 350644211}
   - {fileID: 981959509}
+  - {fileID: 820708715}
   - {fileID: 952785255}
+  - {fileID: 1110986111}
   - {fileID: 1060070729}
+  - {fileID: 1044015801}
   - {fileID: 1807002841}
+  - {fileID: 482811340}
   - {fileID: 1889421866}
+  - {fileID: 397189550}
   - {fileID: 1898891667}
   SpeedOfMushroomMovement: 5
   Plane1: {fileID: 1517003885}
