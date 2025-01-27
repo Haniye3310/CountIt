@@ -10,12 +10,16 @@ public class MonoMessageReciever : MonoBehaviour
     IEnumerator Start()
     {
 
-        SystemFunction.StartMushroom(DataRepo, this);
+        SystemFunction.StartMushroomMovement(DataRepo, this);
         DataRepo.InGameUIPanel.gameObject.SetActive(false);
         while (Mathf.Abs(Camera.main.fieldOfView - 60) > 0.1)
         {
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, 60, 0.1f);
             yield return null;
+        }
+        foreach(PlayerData p in DataRepo.Players)
+        {
+            StartCoroutine(SystemFunction.StartPlayerWalkIn(DataRepo,p));
         }
 
         DataRepo.StartCountDownTimer.gameObject.SetActive(true);
@@ -28,7 +32,8 @@ public class MonoMessageReciever : MonoBehaviour
         }
         DataRepo.StartCountDownTimer.gameObject.SetActive(false);
         DataRepo.InGameUIPanel.gameObject.SetActive(true);
-        StartCoroutine(SystemFunction.StartTimer(DataRepo));
+        StartCoroutine(SystemFunction.StartTimer(DataRepo,this));
+        yield return new WaitForSeconds(1);
         SystemFunction.Start(DataRepo,this);
     }
 
